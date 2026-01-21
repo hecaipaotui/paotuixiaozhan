@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台 - 河财跑腿小站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-running"></i> 河财跑腿小站 (管理)
+            </a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> 前台</a>
+                <a href="admin.html" class="nav-link active"><i class="fas fa-cog"></i> 管理</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 管理后台内容 -->
+    <div class="admin-container">
+        <div class="container">
+            <h1 class="section-title"><i class="fas fa-tachometer-alt"></i> 数据看板</h1>
+            
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <h3>总订单数</h3>
+                    <p class="stat-number" id="statTotalOrders">--</p>
+                </div>
+                <div class="stat-card">
+                    <h3>待接单</h3>
+                    <p class="stat-number" id="statPendingOrders">--</p>
+                </div>
+                <div class="stat-card">
+                    <h3>今日新增</h3>
+                    <p class="stat-number" id="statTodayOrders">--</p>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h2><i class="fas fa-list"></i> 最近订单</h2>
+                <div id="adminOrdersList">
+                    <p>正在加载管理数据...</p>
+                    <!-- 最近的订单列表会在这里显示 -->
+                </div>
+            </div>
+
+            <div class="admin-notice">
+                <p><strong>提示：</strong>这是简易管理后台。完整功能（如审核、删除订单）需结合Supabase控制台操作。</p>
+                <p>访问您的 <a href="https://app.supabase.com" target="_blank">Supabase控制台</a> 可以管理数据库中的所有数据。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 河财跑腿小站 - 管理后台 | 数据源：Supabase</p>
+        </div>
+    </footer>
+
+    <!-- 引入脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/supabase-client.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script>
+        // 这是一个简单的管理后台框架
+        // 实际应用中，这里应加载统计数据，并可能需要管理员权限
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('管理后台已加载。需要实现数据统计功能。');
+            // 例如：loadAdminStats();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+/* 发布页专用样式 */
+
+.publish-container {
+    padding: 30px 0 60px;
+}
+.publish-title {
+    color: #1890ff;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.publish-subtitle {
+    color: #666;
+    margin-bottom: 30px;
+}
+.publish-form {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+/* 价格输入 */
+.price-input-wrapper {
+    position: relative;
+}
+.price-input-wrapper .form-input {
+    padding-right: 60px;
+}
+.price-unit {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-weight: bold;
+}
+
+/* 时间选项 */
+.time-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.time-option {
+    padding: 10px 20px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+}
+.time-option:hover {
+    background: #e0e0e0;
+}
+.time-option.active {
+    background: #1890ff;
+    color: white;
+}
+
+/* 联系方式字段 */
+.contact-fields {
+    display: flex;
+    gap: 15px;
+}
+.contact-fields .form-input {
+    flex: 1;
+}
+
+/* 表单操作按钮 */
+.form-actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+.form-actions .btn {
+    flex: 1;
+    padding: 15px;
+    font-size: 18px;
+}
+
+/* 发布须知 */
+.publish-notice {
+    background: #f0f9ff;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.publish-notice h3 {
+    color: #1890ff;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.publish-notice ul {
+    padding-left: 20px;
+    color: #666;
+}
+.publish-notice li {
+    margin-bottom: 8px;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .publish-form { padding: 20px; }
+    .time-option { min-width: calc(50% - 10px); }
+    .contact-fields { flex-direction: column; gap: 15px; }
+    .form-actions { flex-direction: column; }
+}

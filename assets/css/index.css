@@ -1,0 +1,109 @@
+/* 首页专用样式 */
+
+/* 搜索区域 */
+.search-section {
+    padding: 30px 0;
+    background: white;
+    margin-bottom: 30px;
+}
+.search-box {
+    display: flex;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.search-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.search-btn {
+    padding: 12px 30px;
+    background: #1890ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 订单区域 */
+.orders-section {
+    min-height: 500px;
+    padding-bottom: 60px;
+}
+.section-title {
+    margin-bottom: 30px;
+    color: #1890ff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 首页订单卡片细节 */
+.order-id {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.order-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+.order-detail {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+.order-meta {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+.order-type, .order-status {
+    background: #f0f9ff;
+    color: #1890ff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.order-status.pending { background: #fff7e6; color: #fa8c16; }
+.order-status.matched { background: #f6ffed; color: #52c41a; }
+.order-status.completed { background: #f0f0f0; color: #999; }
+.order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+.order-reward {
+    font-size: 24px;
+    font-weight: bold;
+    color: #52c41a;
+}
+.order-time {
+    color: #999;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.order-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .search-box { flex-direction: column; }
+    .search-btn { width: 100%; }
+    .order-footer { flex-direction: column; gap: 15px; align-items: flex-start; }
+    .order-actions { width: 100%; }
+    .order-actions .btn { flex: 1; }
+}

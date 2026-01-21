@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单详情 - 河财跑腿小站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-running"></i> 河财跑腿小站
+            </a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+                <a href="publish.html" class="nav-link"><i class="fas fa-plus-circle"></i> 发布</a>
+                <a href="my-orders.html" class="nav-link"><i class="fas fa-user"></i> 我的</a>
+                <a href="#" class="nav-link" id="loginBtn"><i class="fas fa-sign-in-alt"></i> 登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 详情内容 -->
+    <div class="order-detail-container">
+        <div class="container">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> 返回列表</a>
+            
+            <div id="detailLoading" class="loading">
+                <div class="spinner"></div>
+                <p>正在加载订单详情...</p>
+            </div>
+
+            <div id="orderDetailContent" style="display: none;">
+                <!-- 订单详情会由JavaScript动态填充到这里 -->
+            </div>
+
+            <div id="detailError" class="error-message" style="display: none;">
+                <p>订单加载失败或订单不存在。</p>
+                <a href="index.html" class="btn btn-primary">返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>客服微信：<strong>hecaipaotui</strong> | © 2024 河财跑腿小站</p>
+        </div>
+    </footer>
+
+    <!-- 引入脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/supabase-client.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script>
+        // 这是一个简单的详情页框架，需要和`index.js`配合
+        // 实际开发中，这里会有更复杂的逻辑来根据URL中的订单ID加载数据
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('订单详情页已加载，具体逻辑需在common.js或独立js中实现。');
+        });
+    </script>
+</body>
+</html>

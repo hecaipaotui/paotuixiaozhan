@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布需求 - 河财跑腿小站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/publish.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-running"></i> 河财跑腿小站
+            </a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+                <a href="publish.html" class="nav-link active"><i class="fas fa-plus-circle"></i> 发布</a>
+                <a href="my-orders.html" class="nav-link"><i class="fas fa-user"></i> 我的</a>
+                <a href="#" class="nav-link" id="loginBtn"><i class="fas fa-sign-in-alt"></i> 登录</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 发布表单 -->
+    <div class="publish-container">
+        <div class="container">
+            <h1 class="publish-title"><i class="fas fa-edit"></i> 填写需求信息</h1>
+            <p class="publish-subtitle">请详细描述您的需求，方便同学接单</p>
+
+            <form id="publishForm" class="publish-form">
+                <div class="form-group">
+                    <label for="orderType"><i class="fas fa-tag"></i> 需求类型 *</label>
+                    <select id="orderType" class="form-select" required>
+                        <option value="">请选择</option>
+                        <option value="取快递">取快递</option>
+                        <option value="打印资料">打印资料</option>
+                        <option value="食堂代买">食堂代买</option>
+                        <option value="超市代购">超市代购</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderDetail"><i class="fas fa-align-left"></i> 详细描述 *</label>
+                    <textarea id="orderDetail" class="form-textarea" rows="4" placeholder="例如：从南区菜鸟驿站取3个包裹送到北区3号楼123宿舍..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="orderReward"><i class="fas fa-money-bill-wave"></i> 报酬金额 (元) *</label>
+                    <div class="price-input-wrapper">
+                        <input type="number" id="orderReward" class="form-input" min="1" max="999" placeholder="10" required>
+                        <span class="price-unit">元</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> 期望完成时间 *</label>
+                    <div class="time-options">
+                        <div class="time-option active" data-time="尽快">越快越好</div>
+                        <div class="time-option" data-time="1小时内">1小时内</div>
+                        <div class="time-option" data-time="今天内">今天内完成</div>
+                        <div class="time-option" data-time="自定义">自定义</div>
+                    </div>
+                    <input type="text" id="customTime" class="form-input" placeholder="请输入具体时间，如：今天17:00前" style="display: none; margin-top: 10px;">
+                    <input type="hidden" id="expectTime" value="尽快" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-address-card"></i> 您的联系方式 *</label>
+                    <div class="contact-fields">
+                        <input type="text" id="contactWechat" class="form-input" placeholder="微信（推荐）">
+                        <input type="tel" id="contactPhone" class="form-input" placeholder="手机号">
+                    </div>
+                    <p class="form-hint">至少填写一项，用于接单者联系您</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="otherRequirements"><i class="fas fa-clipboard-list"></i> 其他要求 (可选)</label>
+                    <textarea id="otherRequirements" class="form-textarea" rows="3" placeholder="例如：需要女生接单、需要包装好等..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back()">取消</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> 确认发布
+                    </button>
+                </div>
+            </form>
+
+            <div class="publish-notice">
+                <h3><i class="fas fa-info-circle"></i> 发布须知</h3>
+                <ul>
+                    <li>发布后请保持通讯畅通，方便接单者联系。</li>
+                    <li>请勿发布虚假信息或违法内容。</li>
+                    <li>交易过程中请注意个人财产安全。</li>
+                    <li>有问题可联系客服微信：<strong>hecaipaotui</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>客服微信：<strong>hecaipaotui</strong> | © 2024 河财跑腿小站</p>
+        </div>
+    </footer>
+
+    <!-- 引入脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/supabase-client.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/publish.js"></script>
+</body>
+</html>
