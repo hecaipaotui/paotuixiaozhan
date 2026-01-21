@@ -34,30 +34,35 @@ class IndexPage {
 
     // 加载订单
     async loadOrders() {
-        this.isLoading = true;
-        this.showLoading();
+    this.isLoading = true;
+    this.showLoading();
+    
+    try {
+        // 使用Supabase查询数据
+        const { data, error, count } = await supabase
+            .from('orders')
+            .select('*', { count: 'exact' })
+            .eq('status', 'pending') // 只显示待接单的订单
+            .order('created_at', { ascending: false })
+            .range((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize - 1);
         
-        try {
-            const result = await window.paotuiDB.getOrders(
-                this.currentFilter,
-                this.currentPage,
-                this.pageSize
-            );
-            
-            if (result.success) {
-                this.displayOrders(result.data);
-                this.updatePagination(result.total);
-            } else {
-                this.showError('加载订单失败: ' + result.error);
-            }
-        } catch (error) {
-            console.error('加载订单异常:', error);
-            this.showError('网络异常，请稍后重试');
-        } finally {
-            this.isLoading = false;
-            this.hideLoading();
-        }
+        if (error) throw error;
+        
+        // 格式化数据
+        const formattedData = data.map(order => ({
+            ...order,
+            reward: (order.reward / 100).toFixed(2) // 将分转为元
+        }));
+        
+        this.displayOrders(formattedData);
+        
+    } catch (error) {
+        console.error('加载订单失败:', error);
+        this.showError('加载订单失败，请检查网络连接');
+    } finally {
+        this.isLoading = false;
     }
+}
 
     // 显示加载状态
     showLoading() {
