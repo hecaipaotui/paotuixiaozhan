@@ -7,6 +7,234 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+<style>
+    /* 管理后台专用样式 */
+    .admin-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        border-top: 5px solid #1890ff;
+    }
+    
+    .stat-card h3 {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .stat-number {
+        font-size: 36px;
+        font-weight: bold;
+        color: #1890ff;
+        margin: 0;
+    }
+    
+    .admin-section {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    
+    .orders-table {
+        margin-top: 20px;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .table-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr;
+        background: #f0f0f0;
+        padding: 15px;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .table-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 2fr 1fr;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+    }
+    
+    .table-row:hover {
+        background: #f9f9f9;
+    }
+    
+    .table-row:last-child {
+        border-bottom: none;
+    }
+    
+    .order-status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 14px;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    .status-pending {
+        background: #fff7e6;
+        color: #fa8c16;
+    }
+    
+    .status-matched {
+        background: #f6ffed;
+        color: #52c41a;
+    }
+    
+    .status-completed {
+        background: #f0f0f0;
+        color: #999;
+    }
+    
+    .status-canceled {
+        background: #fff2f0;
+        color: #ff4d4f;
+    }
+    
+    .order-actions {
+        display: flex;
+        gap: 8px;
+    }
+    
+    .btn-sm {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
+    .btn-info {
+        background: #1890ff;
+        color: white;
+    }
+    
+    .btn-warning {
+        background: #faad14;
+        color: white;
+    }
+    
+    .admin-controls {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+    
+    .admin-search {
+        flex: 1;
+        padding: 10px 15px;
+        border: 2px solid #e8e8e8;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    
+    .admin-select {
+        padding: 10px 15px;
+        border: 2px solid #e8e8e8;
+        border-radius: 8px;
+        font-size: 16px;
+        background: white;
+        min-width: 150px;
+    }
+    
+    .admin-message {
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        animation: slideIn 0.3s ease;
+    }
+    
+    .admin-message-success {
+        background: #f6ffed;
+        border: 1px solid #b7eb8f;
+        color: #52c41a;
+    }
+    
+    .admin-message-error {
+        background: #fff2f0;
+        border: 1px solid #ffccc7;
+        color: #ff4d4f;
+    }
+    
+    .admin-message-info {
+        background: #e6f7ff;
+        border: 1px solid #91d5ff;
+        color: #1890ff;
+    }
+    
+    .admin-message-warning {
+        background: #fff7e6;
+        border: 1px solid #ffd591;
+        color: #fa8c16;
+    }
+    
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: inherit;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .empty {
+        text-align: center;
+        padding: 40px;
+        color: #999;
+        font-size: 16px;
+    }
+    
+    .error {
+        text-align: center;
+        padding: 40px;
+        color: #ff4d4f;
+        font-size: 16px;
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .table-header, .table-row {
+            grid-template-columns: 1fr 1fr;
+            font-size: 14px;
+        }
+        
+        .table-header div:nth-child(n+3),
+        .table-row div:nth-child(n+3) {
+            display: none;
+        }
+    }
+</style>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
@@ -22,39 +250,61 @@
     </nav>
 
     <!-- 管理后台内容 -->
-    <div class="admin-container">
-        <div class="container">
-            <h1 class="section-title"><i class="fas fa-tachometer-alt"></i> 数据看板</h1>
-            
-            <div class="admin-stats">
-                <div class="stat-card">
-                    <h3>总订单数</h3>
-                    <p class="stat-number" id="statTotalOrders">--</p>
-                </div>
-                <div class="stat-card">
-                    <h3>待接单</h3>
-                    <p class="stat-number" id="statPendingOrders">--</p>
-                </div>
-                <div class="stat-card">
-                    <h3>今日新增</h3>
-                    <p class="stat-number" id="statTodayOrders">--</p>
-                </div>
+    <!-- 替换现有的 <div class="admin-container"> 部分 -->
+<div class="admin-container">
+    <div class="container">
+        <h1 class="section-title"><i class="fas fa-tachometer-alt"></i> 数据看板</h1>
+        
+        <!-- 控制面板 -->
+        <div class="admin-controls">
+            <input type="text" id="adminSearch" class="admin-search" placeholder="搜索订单号、描述或联系方式...">
+            <select id="statusFilter" class="admin-select">
+                <option value="all">全部状态</option>
+                <option value="pending">待接单</option>
+                <option value="matched">已接单</option>
+                <option value="completed">已完成</option>
+                <option value="canceled">已取消</option>
+            </select>
+            <button id="refreshBtn" class="btn btn-primary">
+                <i class="fas fa-sync-alt"></i> 刷新
+            </button>
+        </div>
+        
+        <div class="admin-stats">
+            <div class="stat-card">
+                <h3>总订单数</h3>
+                <p class="stat-number" id="statTotalOrders">0</p>
             </div>
-
-            <div class="admin-section">
-                <h2><i class="fas fa-list"></i> 最近订单</h2>
-                <div id="adminOrdersList">
-                    <p>正在加载管理数据...</p>
-                    <!-- 最近的订单列表会在这里显示 -->
-                </div>
+            <div class="stat-card">
+                <h3>待接单</h3>
+                <p class="stat-number" id="statPendingOrders">0</p>
             </div>
-
-            <div class="admin-notice">
-                <p><strong>提示：</strong>这是简易管理后台。完整功能（如审核、删除订单）需结合Supabase控制台操作。</p>
-                <p>访问您的 <a href="https://app.supabase.com" target="_blank">Supabase控制台</a> 可以管理数据库中的所有数据。</p>
+            <div class="stat-card">
+                <h3>今日新增</h3>
+                <p class="stat-number" id="statTodayOrders">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>总报酬</h3>
+                <p class="stat-number" id="statTotalReward">0元</p>
             </div>
         </div>
+
+        <div class="admin-section">
+            <h2><i class="fas fa-list"></i> 最近订单</h2>
+            <div id="adminOrdersList">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>正在加载管理数据...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-notice">
+            <p><strong>提示：</strong>这是简易管理后台。完整功能（如审核、删除订单）需结合Supabase控制台操作。</p>
+            <p>访问您的 <a href="https://app.supabase.com" target="_blank">Supabase控制台</a> 可以管理数据库中的所有数据。</p>
+        </div>
     </div>
+</div>
 
     <!-- 底部 -->
     <footer class="footer">
@@ -67,6 +317,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="assets/js/supabase-client.js"></script>
     <script src="assets/js/common.js"></script>
+    <!-- 在现有的脚本引入之后添加 -->
+    <script src="assets/js/admin.js"></script>
     <script>
         // 这是一个简单的管理后台框架
         // 实际应用中，这里应加载统计数据，并可能需要管理员权限

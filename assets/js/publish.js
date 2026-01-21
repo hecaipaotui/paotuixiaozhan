@@ -172,38 +172,39 @@ function validateFormData(data) {
 // 保存订单到Supabase
 async function saveOrderToSupabase(orderData) {
     try {
-        // 准备插入到数据库的数据
+        // 直接使用全局的supabase客户端
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // 准备数据
         const orderRecord = {
             order_id: orderData.orderId,
             type: orderData.type,
             detail: orderData.detail,
-            reward: orderData.reward * 100, // 以分为单位存储
+            reward: orderData.reward * 100, // 转为分
             expect_time: orderData.expectTime,
-            status: 'pending', // 初始状态为“待接单”
+            status: 'pending',
             publisher_wechat: orderData.wechat || null,
             publisher_phone: orderData.phone || null,
-            publisher_name: '匿名用户', // 可以扩展为用户系统
-            requirements: orderData.requirements || null,
-            created_at: new Date().toISOString()
+            requirements: orderData.requirements || null
         };
         
-        console.log('准备插入数据：', orderRecord);
+        console.log('准备插入数据:', orderRecord);
         
-        // 插入数据到Supabase的'orders'表
+        // 插入数据
         const { data, error } = await supabase
             .from('orders')
             .insert([orderRecord])
             .select();
         
         if (error) {
-            console.error('Supabase插入错误：', error);
+            console.error('Supabase插入错误:', error);
             return {
                 success: false,
                 error: error.message
             };
         }
         
-        console.log('插入成功，返回数据：', data);
+        console.log('插入成功:', data);
         
         return {
             success: true,
@@ -212,10 +213,10 @@ async function saveOrderToSupabase(orderData) {
         };
         
     } catch (error) {
-        console.error('保存订单时发生异常：', error);
+        console.error('保存订单异常:', error);
         return {
             success: false,
-            error: '网络或服务器错误'
+            error: error.toString()
         };
     }
 }
